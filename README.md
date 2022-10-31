@@ -1,6 +1,6 @@
 # nkust1111111111ooo_midterm
 
-A new Flutter project.
+期中作業參考
 
 ## Getting Started
 
