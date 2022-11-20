@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-final player=AudioPlayer();
+final player = AudioPlayer();
 
 void main() => runApp(MyApp());
 
@@ -11,90 +11,85 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-  final tabs=[
+  final tabs = [
     Center(child: screen1()),
     Center(child: screen2()),
     Center(child: screen3()),
     Center(child: screen4()),
   ];
 
-  int _currentindex=0;
+  int _currentindex = 0;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('Midterm'),),
+        appBar: AppBar(
+          title: Text('Midterm'),
+        ),
         body: tabs[_currentindex],
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.red,
           selectedItemColor: Colors.white,
           selectedFontSize: 18.0,
           unselectedFontSize: 14.0,
           iconSize: 30.0,
           currentIndex: _currentindex,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home),
-                                    label: 'Home',
-                                    ),
-            BottomNavigationBarItem(icon: Icon(Icons.access_alarm),
-                                    label: 'Alarm',
-                                    ),
-            BottomNavigationBarItem(icon: Icon(Icons.business),
-                                    label: 'Business',
-                                    ),
-            BottomNavigationBarItem(icon: Icon(Icons.school),
-                                    label: 'School',
-                                    ),
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: '自傳',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.access_alarm),
+              label: '學習歷程',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.business),
+              label: '大學目標',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.school),
+              label: '專題方向',
+            ),
           ],
-          onTap: (index) { setState(() {
-                                       _currentindex=index;
-                                       if (index!=0) {
-                                         player.stop();
-                                       }
-                         });
-        },
-      ),
+          onTap: (index) {
+            setState(() {
+              _currentindex = index;
+              if (index != 0) {
+                player.stop();
+              }
+            });
+          },
+        ),
       ),
     );
   }
 }
 
 class screen1 extends StatelessWidget {
-
-  final String s1='我出生在一個很平凡但很美滿的小家庭，父親是個公務員，'
-      '在台電服務，母親是個家庭主婦，而弟弟和我都還在學校求學。'
-      '父母用民主的方式管教我們，希望我們能夠獨立自主、主動學習，'
-      '累積人生經驗，但他們會適時的給予鼓勵和建議，父母親只對'
-      '我們要求兩件事，第一是保持健康，第二是著重課業。因為沒有'
-      '健康的身體，就算有再多的才華、再大的抱負也無法發揮出來。'
-      '又因為家境並不富裕，所以必須專心於課業上，學得一技之長'
-      '，將來才能自立更生。除了課業之外，其他方面我也沒有偏廢。'
-      '在高一時加入學校管樂隊，吹奏低音號，每天升旗參加出勤，在'
-      '這裡不但使我對管樂器有進一步的認識，還認識了許多朋友，因此'
-      '在那個時候，參加社團已成為我放學後的一大休閒。而我最喜歡的'
-      '運動是棒球，我常在電視上或球場上觀賞職棒比賽，欣賞球員的美姿'
-      '，模仿其動作。我常利用課餘時間約同學一起出外打球，記得'
-      '在高二時，班上組隊參加班際壘球賽，那時我擔任隊長，防守二壘，'
-      '首先展開攻勢，激起球隊士氣，最後終以一分之差贏得了最後勝利。'
-      '除了棒球之外，我也很喜歡藍球、排球等，因此使得原本瘦弱的身體'
-      '，變得強壯許多。';
+  final String s1 = '我出生在一個平凡的家庭，因為家裡本身就是做電子相關的行業，所以從小耳濡目染下，對電子相關的行業也有了興趣，'
+  '所以高中也就讀了電子科，在第一次接觸程式時，就覺得程式非常的有趣，雖然一開始也會覺得非常困難，'
+  '但因為是做著有興趣的事情，也就會特別有動力的學習，'
+  '所以在選大學科系時，也沒有猶豫地選擇了跟軟體開發有關的科系，而在大學也學習到了更多樣的語言，'
+  '雖然程式語言布一樣，但其實他的邏輯還有解決的方式其實都是一樣的，就只是換了種語言表達而已，而學到現在我還是對程式開發保有一開始的熱忱。';
 
   @override
   Widget build(BuildContext context) {
-
     player.play(AssetSource("Free_Test_Data_1MB_MP3.mp3"));
 
     return SingleChildScrollView(
       child: Column(
-        children:<Widget>[
+        children: <Widget>[
           //先放個標題
-          Padding(padding: EdgeInsets.fromLTRB(20, 30, 20, 20),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(20, 30, 20, 20),
             child: Text("Who am I",
-                style: TextStyle(fontSize:24,
-                  fontWeight:FontWeight.bold,)),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                )),
           ),
           //文字自傳部份
           Container(
@@ -103,11 +98,14 @@ class screen1 extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(color: Colors.black, width: 3),
               borderRadius: BorderRadius.circular(8),
-              boxShadow: [ BoxShadow(color: Colors.amberAccent,
-                  offset: Offset(6, 6)),
-              ],),
-            child:Text(s1,
-              style: TextStyle(fontSize: 20),),
+              boxShadow: const [
+                BoxShadow(color: Colors.amberAccent, offset: Offset(6, 6)),
+              ],
+            ),
+            child: Text(
+              s1,
+              style: TextStyle(fontSize: 20),
+            ),
           ),
 
           //放一張照片
@@ -117,7 +115,9 @@ class screen1 extends StatelessWidget {
             height: 200,
             width: 200,
           ),
-          SizedBox(height: 30,),
+          SizedBox(
+            height: 30,
+          ),
 
           //一列放兩個圖
           Row(
@@ -135,7 +135,7 @@ class screen1 extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                   image: DecorationImage(
                     image: AssetImage('images/f1.jpg'),
-                    fit: BoxFit.cover ,
+                    fit: BoxFit.cover,
                   ),
                   color: Colors.white,
                 ),
@@ -152,7 +152,7 @@ class screen1 extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                   image: DecorationImage(
                     image: AssetImage('images/f1.jpg'),
-                    fit: BoxFit.cover ,
+                    fit: BoxFit.cover,
                   ),
                   color: Colors.white,
                 ),
@@ -168,7 +168,80 @@ class screen1 extends StatelessWidget {
 class screen2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(child:Text('學習歷程'),);
+    return Container(
+      child: Column(
+        children: [
+          //有多種排版方式, 此處以最直覺的方式將每一列放文字內容
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text("大一時期"),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                height: 200,
+                width: 200,
+                child: ListView(
+                  children: [
+                    //條列式參考ˊ
+                    Text('計算機概論(必修)'),
+                    Text('微積分(必修)'),
+                    Text('數位邏輯設計(必修)'),
+                    Text('計算機程式設計(必修)'),
+                    Text('物理(選修)'),
+                    Text('網際網路暨應用(必修)'),
+                    Text('組合語言程式設計(必修)'),
+                    Text('多媒體程式設計(選修)'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text("大二時期"),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                height: 200,
+                width: 200,
+                child: ListView(
+                  children: [
+                    //條列式參考
+                    Text('物件導向程式設計(必修)'),
+                    Text('計算機結構(必修)'),
+                    Text('資料結構(必修)'),
+                    Text('離散數學(必修)'),
+                    Text('計算機網路(必修)'),
+                    Text('微處理機(必修)'),
+                    Text('線性代數(必修)'),
+                    Text('機率與統計(必修)'),
+                    Text('物件導向程式設計實習(選修)'),
+                    Text('視窗程式設計(選修)'),
+                  ],
+                ),
+              ),
+            ],),
+          Row(),
+          Row(),
+          Row(),
+          Row(),
+          Row(),
+        ],
+      ),
+    );
   }
 }
 
@@ -176,44 +249,75 @@ class screen3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child:Column(
+      child: Column(
         children: [
           //有多種排版方式, 此處以最直覺的方式將每一列放文字內容
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [Text("大一時期"),],
+            children: [
+              Text("大三時期"),
+            ],
           ),
-          SizedBox(height: 10,),
-          Row(mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                    height: 200,
-                    width: 200,
-                  child: ListView(
-                    children: [
-                      //條列式參考
-                      Text('1. 學好英文'),
-                      Text('2. 組合語言'),
-                      Text('3. 考取證照'),
-                      Text('4. 人際關係'),
-                    ],
-                  ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                height: 200,
+                width: 200,
+                child: ListView(
+                  children: [
+                    //條列式參考
+                    Text('1. AI技術'),
+                    Text('2. 演算法'),
+                    Text('3. 考取證照'),
+                    Text('4. 人際關係'),
+                  ],
                 ),
-              ],),
-          Row(),
+              ),
+            ],
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text("大四時期"),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                height: 200,
+                width: 200,
+                child: ListView(
+                  children: [
+                    //條列式參考
+                    Text('1. 考研'),
+                    Text('2. 實習'),
+                  ],
+                ),
+              ),
+            ],),
           Row(),
           Row(),
           Row(),
           Row(),
           Row(),
         ],
-      ),);
+      ),
+    );
   }
 }
 
 class screen4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(child:Text('專案方向'),);
+    return Container(
+      child: Text('原住民語文件中跨語言未知詞與同義詞之自動擷取方法'),
+    );
   }
 }
